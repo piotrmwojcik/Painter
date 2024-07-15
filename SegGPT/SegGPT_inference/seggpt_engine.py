@@ -99,7 +99,7 @@ def inference_image(model, device, img_path, img2_paths, tgt2_paths, out_path):
         size=[size[1], size[0]], 
         mode='nearest',
     ).permute(0, 2, 3, 1)[0].numpy()
-    mask = Image.fromarray((output / 255).astype(np.uint8))
+    mask = Image.fromarray((output).astype(np.uint8))
     mask_path = out_path.replace('output', 'mask')
     mask.save(mask_path)
     output = Image.fromarray((input_image * (0.6 * output / 255 + 0.4)).astype(np.uint8))
